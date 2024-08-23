@@ -2,6 +2,7 @@ package com.aravind.micro.service;
 
 import java.util.List;
 
+import com.aravind.micro.model.Applicant;
 import com.aravind.micro.model.Premium;
 
 public interface PremiumService {
@@ -14,5 +15,9 @@ public interface PremiumService {
 	public List<Premium> getAllPremium();
 
 	public Premium getPremium(int premiumId);
+
+	public List<Applicant> getNonPremiunApplicant();
+	
+	//public List<Integer> getNonPremiunApplicant();
 
 }

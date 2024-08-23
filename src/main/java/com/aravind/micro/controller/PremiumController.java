@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aravind.micro.model.Applicant;
 import com.aravind.micro.model.Premium;
 import com.aravind.micro.serviceimpl.PremiumServiceImpl;
 
@@ -92,5 +93,14 @@ public class PremiumController {
 		}
 		return ResponseEntity.ok(premiums);
 	}
+	
+	@GetMapping("/getNonPremiumApplicant")
+	public ResponseEntity<List<Applicant>> getNonPremiumApplicant() {
+		List<Applicant> applicants = service.getNonPremiunApplicant();
+		
+		return ResponseEntity.ok(applicants);
+	} 
+	
+
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aravind.micro.model.Applicant;
 import com.aravind.micro.model.Premium;
 import com.aravind.micro.repository.PremiumRepo;
 import com.aravind.micro.service.PremiumService;
@@ -43,5 +44,15 @@ public class PremiumServiceImpl implements PremiumService {
 	public List<Premium> getPremiumsByApplicant(int applicantId) {
 		return premiumRepo.findByApplicantId(applicantId);
 	}
+
+	public List<Applicant> getNonPremiunApplicant() {
+		return premiumRepo.getByNonPremiumApplicant();
+	}
+	
+//	public List<Integer> getNonPremiunApplicant() {
+//		return premiumRepo.getByNonPremiumApplicant();
+//	}
+	
+	
 
 }

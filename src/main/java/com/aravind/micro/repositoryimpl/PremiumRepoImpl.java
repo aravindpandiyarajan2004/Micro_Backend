@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.aravind.micro.model.Applicant;
 import com.aravind.micro.model.Premium;
 import com.aravind.micro.repository.PremiumRepo;
 
@@ -63,19 +64,29 @@ public class PremiumRepoImpl implements PremiumRepo {
 		return entityManager.find(Premium.class, premiumId);
 
 	}
-	
+
 	@Override
 	public Premium getPremiumByApplicantId(int applicantId) {
-	      return entityManager.createQuery("select p from Premium p where p.applicant.applicantId = :applicantId",Premium.class
-	    		  ).setParameter("applicantId", applicantId).getSingleResult();
+		return entityManager
+				.createQuery("select p from Premium p where p.applicant.applicantId = :applicantId", Premium.class)
+				.setParameter("applicantId", applicantId).getSingleResult();
 	}
 
 	@Override
-    public List<Premium> findByApplicantId(int applicantId) {
-        String query = "SELECT p FROM Premium p WHERE p.applicant.applicantId = :applicantId";
+	public List<Premium> findByApplicantId(int applicantId) {
+		String query = "SELECT p FROM Premium p WHERE p.applicant.applicantId = :applicantId";
 		TypedQuery<Premium> typedQuery = entityManager.createQuery(query, Premium.class);
 		typedQuery.setParameter("applicantId", applicantId);
 		return typedQuery.getResultList();
 	}
+
+	@Override
+	public List<Applicant> getByNonPremiumApplicant() {
+	    String query = "SELECT a FROM Applicant a WHERE a.applicantId NOT IN (SELECT p.applicant.applicantId FROM Premium p) AND a.applicantId IN (SELECT r.applicants.applicantId FROM Risk r)";
+	    TypedQuery<Applicant> typedQuery = entityManager.createQuery(query, Applicant.class);
+	    return typedQuery.getResultList();
+	}
+
+ 
 
 }

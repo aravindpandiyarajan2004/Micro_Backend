@@ -2,6 +2,7 @@ package com.aravind.micro.repository;
 
 import java.util.List;
 
+import com.aravind.micro.model.Applicant;
 import com.aravind.micro.model.Premium;
 
 public interface PremiumRepo {
@@ -18,5 +19,9 @@ public interface PremiumRepo {
 	public Premium getPremiumByApplicantId(int applicantId);
 
 	public List<Premium> findByApplicantId(int applicantId);
+
+//	public List<Applicant> getByNonPremiumApplicant();
+	
+	public List<Applicant> getByNonPremiumApplicant();
 
 }
