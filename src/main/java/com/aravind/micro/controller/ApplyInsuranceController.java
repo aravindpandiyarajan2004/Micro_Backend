@@ -44,22 +44,7 @@ public class ApplyInsuranceController {
 	static final String SUCCESS = "Success";
 	static final String FAILURE = "Failure";
 
-//	@PostMapping
-//	public String insertApplyInsurance(@RequestParam("insuranceDate") String insuranceDate, @RequestParam("healthIssue") boolean healthIssue, @RequestParam("policyNumber") long policyNumber, @RequestParam("status") String status, @RequestParam("reports") MultipartFile reports) {
-//
-//		String msg = "";
-//
-//		try {
-//			byte[] reportsBytes = reports.getBytes();
-//			ApplyInsurance apply = new ApplyInsurance(0,insuranceDate,healthIssue,policyNumber,status, reportsBytes,null,null);
-//			service.addApplyInsurance(apply);
-//			msg = SUCCESS;
-//		} catch (Exception e) {
-//			msg = FAILURE;
-//		}
-//
-//		return msg;
-//	}
+
 
 	@PostMapping
 	public String insertApplyInsurance(@RequestParam("insuranceDate") String insuranceDate,
@@ -138,18 +123,7 @@ public class ApplyInsuranceController {
 
 	}
 
-//	@PostMapping("/sendEmail")
-//	public ResponseEntity<String> sendEmail(@RequestParam String from, @RequestParam String to,
-//			@RequestParam String subject, @RequestParam String body) {
-//		try {
-//
-//			emailService.sendEmail(to, subject, body);
-//			return ResponseEntity.ok("Email sent successfully");
-//		} catch (MessagingException | IOException e) {
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-//					.body("Failed to send email: " + e.getMessage());
-//		}
-//	}
+
 
 	@PostMapping("/sendEmail" + "/{applicantId}/{status}")
 	public ResponseEntity<String> sendEmail(@PathVariable int applicantId, @PathVariable String status) {

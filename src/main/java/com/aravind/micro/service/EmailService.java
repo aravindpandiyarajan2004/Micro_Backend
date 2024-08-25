@@ -48,6 +48,8 @@ public class EmailService {
 		Applicant applicant = applicantRepo.findById(applicantId);
 		Premium premium = premiumRepo.getPremiumByApplicantId(applicantId);
 
+		System.out.println("mail sending");
+
 		if (applicant != null) {
 			MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
@@ -70,8 +72,12 @@ public class EmailService {
 						+ "Your insurance application did not meet our criteria because your risk score is high.\r\n"
 						+ "\r\n" + "Thank you for your interest.\r\n" + "\r\n" + "Regards,\r\n" + "Insurance Team");
 			}
+			try {
 
-			javaMailSender.send(mimeMessage);
+				javaMailSender.send(mimeMessage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			System.out.println("Mail sent");
 		} else {
 			System.err.println("Applicant not found for ID: " + applicantId);
